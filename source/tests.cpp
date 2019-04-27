@@ -19,4 +19,80 @@ TEST_CASE("testing_initialization", "[testing_initialization]")
 	REQUIRE(-9.3f == Approx(b.y));
 }
 
+//2.3
+TEST_CASE("testing_Vecoperator+=", "[testing_Vecoperator+=]")
+{
+	Vec2 a(0.0f, -2.0f);
+	Vec2 b(3.3f, 6.6f);
+	Vec2 c(5.7f, 7.3);
 
+	a += b;
+	REQUIRE(a.x == Approx(3.3f));
+	REQUIRE(a.y == Approx(4.6f));
+
+	b += c;
+	REQUIRE(b.x == Approx(9.0f));
+	REQUIRE(b.y == Approx(13.9f));
+
+	c += a;
+	REQUIRE(c.x == Approx(5.7f));
+	REQUIRE(c.y == Approx(5.3f));
+}
+
+TEST_CASE("testing_Vecoperator-=", "[testing_Vecoperator-=]")
+{
+	Vec2 a(0.0f, -2.0f);
+	Vec2 b(3.3f, 6.6f);
+	Vec2 c(5.7f, 7.3);
+
+	a -= b;
+	REQUIRE(a.x == Approx(-3.3f));
+	REQUIRE(a.y == Approx(-8.6f));
+
+	b -= c;
+	REQUIRE(b.x == Approx(-2.4f));
+	REQUIRE(b.y == Approx(-0.7f));
+
+	c -= a;
+	REQUIRE(c.x == Approx(5.7f));
+	REQUIRE(c.y == Approx(9.3f));
+}
+
+TEST_CASE("testing_Vecoperator*=", "[testing_Vecoperator*=]")
+{
+	Vec2 a(5.0f, 4.0f);
+	float s1(3.0f);
+	float s2(0.0f);
+	float s3(-2.0f);
+
+	a *= s1;
+	REQUIRE(a.x == Approx(15.0f));
+	REQUIRE(a.y == Approx(12.0f));
+
+	a *= s2;
+	REQUIRE(a.x == Approx(0.0f));
+	REQUIRE(a.y == Approx(0.0f));
+
+	a *= s3;
+	REQUIRE(a.x == Approx(-10.0f));
+	REQUIRE(a.y == Approx(-8.0f));
+}
+
+TEST_CASE("testing_Vecoperator/=", "[testing_Vecoperator/=]")
+{
+	Vec2 a(4.0f, 7.0f);
+	float s1(0.0f);
+	float s2(2.0f);
+	float s3(-2.0f);
+
+	a /= s1;
+	REQUIRE("Die Division durch 0 ist nicht definiert.\n");
+
+	a /= s2;
+	REQUIRE(a.x == Approx(2.0f));
+	REQUIRE(a.y == Approx(3.5f));
+
+	a /= s3;
+	REQUIRE(a.x == Approx(-2.0f));
+	REQUIRE(a.y == Approx(-3.5f));
+}
