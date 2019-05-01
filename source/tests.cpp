@@ -2,11 +2,6 @@
 #include <catch.hpp>
 #include "vec2.hpp"
 
-int main(int argc, char *argv[])
-{
-  return Catch::Session().run(argc, argv);
-}
-
 //2.2
 TEST_CASE("testing_initialization", "[testing_initialization]")
 {
@@ -22,9 +17,9 @@ TEST_CASE("testing_initialization", "[testing_initialization]")
 //2.3
 TEST_CASE("testing_Vecoperator+=", "[testing_Vecoperator+=]")
 {
-	Vec2 a(0.0f, -2.0f);
-	Vec2 b(3.3f, 6.6f);
-	Vec2 c(5.7f, 7.3f);
+	Vec2 a{ 0.0f, -2.0f };
+	Vec2 b{ 3.3f, 6.6f };
+	Vec2 c{ 5.7f, 7.3f };
 
 	a += b;
 	REQUIRE(a.x == Approx(3.3f));
@@ -41,9 +36,9 @@ TEST_CASE("testing_Vecoperator+=", "[testing_Vecoperator+=]")
 
 TEST_CASE("testing_Vecoperator-=", "[testing_Vecoperator-=]")
 {
-	Vec2 a(0.0f, -2.0f);
-	Vec2 b(3.3f, 6.6f);
-	Vec2 c(5.7f, 7.3f);
+	Vec2 a{ 0.0f, -2.0f };
+	Vec2 b{ 3.3f, 6.6f };
+	Vec2 c{ 5.7f, 7.3f };
 
 	a -= b;
 	REQUIRE(a.x == Approx(-3.3f));
@@ -60,7 +55,7 @@ TEST_CASE("testing_Vecoperator-=", "[testing_Vecoperator-=]")
 
 TEST_CASE("testing_Vecoperator*=", "[testing_Vecoperator*=]")
 {
-	Vec2 a(5.0f, 4.0f);
+	Vec2 a{ 5.0f, 4.0f };
 	float s1(3.0f);
 	float s2(0.0f);
 	float s3(-2.0f);
@@ -80,7 +75,7 @@ TEST_CASE("testing_Vecoperator*=", "[testing_Vecoperator*=]")
 
 TEST_CASE("testing_Vecoperator/=", "[testing_Vecoperator/=]")
 {
-	Vec2 a(4.0f, 7.0f);
+	Vec2 a{ 4.0f, 7.0f };
 	float s1(0.0f);
 	float s2(2.0f);
 	float s3(-2.0f);
@@ -101,9 +96,9 @@ TEST_CASE("testing_Vecoperator/=", "[testing_Vecoperator/=]")
 TEST_CASE("testing_Vecoperator+", "[testing_Vecoperator+]")
 {
 	Vec2 a;
-	Vec2 u(0.0f, -2.0f);
-	Vec2 v(3.3f, 6.6f);
-	Vec2 w(5.7f, 7.3f);
+	Vec2 u{ 0.0f, -2.0f };
+	Vec2 v{ 3.3f, 6.6f };
+	Vec2 w{ 5.7f, 7.3f };
 
 	u + v;
 	REQUIRE(a.x == Approx(3.3f));
@@ -121,9 +116,9 @@ TEST_CASE("testing_Vecoperator+", "[testing_Vecoperator+]")
 TEST_CASE("testing_Vecoperator-", "[testing_Vecoperator-]")
 {
 	Vec2 a;
-	Vec2 u(0.0f, -2.0f);
-	Vec2 v(3.3f, 6.6f);
-	Vec2 w(5.7f, 7.3f);
+	Vec2 u{ 0.0f, -2.0f };
+	Vec2 v{ 3.3f, 6.6f };
+	Vec2 w{ 5.7f, 7.3f };
 
 	u - v;
 	REQUIRE(a.x == Approx(-3.3f));
@@ -141,7 +136,7 @@ TEST_CASE("testing_Vecoperator-", "[testing_Vecoperator-]")
 TEST_CASE("testing_Vecoperator*", "[testing_Vecoperator*]")
 {
 	Vec2 a;
-	Vec2 v(5.0f, 4.0f);
+	Vec2 v{ 5.0f, 4.0f };
 	float s1(3.0f);
 	float s2(0.0f);
 	float s3(-2.0f);
@@ -157,15 +152,6 @@ TEST_CASE("testing_Vecoperator*", "[testing_Vecoperator*]")
 	v * s3;
 	REQUIRE(a.x == Approx(-10.0f));
 	REQUIRE(a.y == Approx(-8.0f));
-}
-
-TEST_CASE("testing_Vecoperator*", "[testing_Vecoperator*]")
-{
-	Vec2 a;
-	Vec2 v(5.0f, 4.0f);
-	float s1(3.0f);
-	float s2(0.0f);
-	float s3(-2.0f);
 
 	s1 * v;
 	REQUIRE(a.x == Approx(15.0f));
@@ -183,7 +169,7 @@ TEST_CASE("testing_Vecoperator*", "[testing_Vecoperator*]")
 TEST_CASE("testing_Vecoperator/", "[testing_Vecoperator/]")
 {
 	Vec2 a;
-	Vec2 v(4.0f, 7.0f);
+	Vec2 v{ 4.0f, 7.0f };
 	float s1(0.0f);
 	float s2(2.0f);
 	float s3(-2.0f);
@@ -198,4 +184,9 @@ TEST_CASE("testing_Vecoperator/", "[testing_Vecoperator/]")
 	v / s3;
 	REQUIRE(a.x == Approx(-2.0f));
 	REQUIRE(a.y == Approx(-3.5f));
+}
+
+int main(int argc, char *argv[])
+{
+	return Catch::Session().run(argc, argv);
 }
