@@ -3,6 +3,7 @@
 #include <catch.hpp>
 #include "vec2.hpp"
 #include "mat2.hpp"
+#include "color.hpp"
 
 //2.2
 TEST_CASE("testing_initialization", "[testing_initialization]")
@@ -189,7 +190,7 @@ TEST_CASE("testing_Vecoperator/", "[testing_Vecoperator/]")
 }
 
 //2.5
-TEST_CASE("testing_Matoperator*=", "[Matoperator*=]") {
+TEST_CASE("testing_Matoperator*=", "[testing_Matoperator*=]") {
 	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
 	Mat2 m2{ 2.0f, 2.0f, 3.0f, 5.0f };
 	Mat2 m3{ 1.5f, 1.0f, 0.0f, -3.0f };
@@ -207,7 +208,7 @@ TEST_CASE("testing_Matoperator*=", "[Matoperator*=]") {
 	REQUIRE(m3.e_11 == -15.0f);
 }
 
-TEST_CASE("testing_Matoperator*", "[Matoperator*]") {
+TEST_CASE("testing_Matoperator*", "[testing_Matoperator*]") {
 	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
 	Mat2 m2{ 2.0f, 2.0f, 3.0f, 5.0f };
 	Mat2 m3{ 1.5f, 1.0f, 0.0f, -3.0f };
@@ -226,7 +227,7 @@ TEST_CASE("testing_Matoperator*", "[Matoperator*]") {
 }
 
 //2.6
-TEST_CASE("testing_Det", "[Det]") {
+TEST_CASE("testing_Det", "[testing_Det]") {
 	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
 	Mat2 m2{ 1.0f, 2.0f, 3.0f, 4.0f };
 
@@ -234,7 +235,7 @@ TEST_CASE("testing_Det", "[Det]") {
 	REQUIRE(m2.det() == -2.0f);
 }
 
-TEST_CASE("testing_MatVecOperator*", "[MatVecOperator*]") {
+TEST_CASE("testing_MatVecOperator*", "[testing_MatVecOperator*]") {
 	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
 	Mat2 m2{ 2.0f, 2.0f, 3.0f, 5.0f };
 	Mat2 m3{ 1.5f, 1.0f, 0.0f, -3.0f };
@@ -255,7 +256,7 @@ TEST_CASE("testing_MatVecOperator*", "[MatVecOperator*]") {
 	REQUIRE(v3.y == -15.0f);
 }
 
-TEST_CASE("testing_Inv", "[Inv]") {
+TEST_CASE("testing_Inv", "[testing_Inv]") {
 	Mat2 m1;
 	Mat2 m2{ 5.0f, 3.0f, 4.5f, 2.0f };
 	Mat2 m3{ -1.0f, -4.5f, 5.0f, 0.0f };
@@ -273,7 +274,7 @@ TEST_CASE("testing_Inv", "[Inv]") {
 	REQUIRE(m1.e_11 == Approx(-0.04444f));
 }
 
-TEST_CASE("testing_Trans", "[Trans]") {
+TEST_CASE("testing_Trans", "[testing_Trans]") {
 	Mat2 m1;
 	Mat2 m2{ 2.0f, 3.0f, 1.0f, 4.0f };
 	Mat2 m3{ 7.0f, 2.0f, -6.0f, -1.0f };
@@ -287,7 +288,7 @@ TEST_CASE("testing_Trans", "[Trans]") {
 	REQUIRE(m1.e_11 == 2.0f);
 }
 
-TEST_CASE("testing_Rotat", "[Rotat]") {
+TEST_CASE("testing_Rotat", "[testing_Rotat]") {
 	float phi1 = 2 * M_PI;
 	float phi2 = M_PI;
 	Mat2 rotation;
@@ -303,6 +304,19 @@ TEST_CASE("testing_Rotat", "[Rotat]") {
 	REQUIRE(rotation.e_01 == Approx(0.801153f));
 	REQUIRE(rotation.e_10 == Approx(-0.801153f));
 	REQUIRE(rotation.e_11 == Approx(-0.59846f));
+}
+
+//2.7
+TEST_CASE("testing_Color", "[testing_Color]") {
+	Color c;
+	REQUIRE(Approx(0.5f) == c.r);
+	REQUIRE(Approx(0.5f) == c.g);
+	REQUIRE(Approx(0.5f) == c.b);
+
+	Color c2{1.0f, 0.7f, 0.0f};
+	REQUIRE(Approx(1.0f) == c2.r);
+	REQUIRE(Approx(0.7f) == c2.g);
+	REQUIRE(Approx(0.0f) == c2.b);
 }
 
 int main(int argc, char *argv[])
