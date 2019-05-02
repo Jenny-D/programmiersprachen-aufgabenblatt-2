@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "vec2.hpp"
+#include "mat2.hpp"
 
 //2.2
 TEST_CASE("testing_initialization", "[testing_initialization]")
@@ -184,6 +185,43 @@ TEST_CASE("testing_Vecoperator/", "[testing_Vecoperator/]")
 	v / s3;
 	REQUIRE(a.x == Approx(-2.0f));
 	REQUIRE(a.y == Approx(-3.5f));
+}
+
+//2.5
+TEST_CASE("testing_Matoperator*=", "[Matoperator*=]") {
+	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
+	Mat2 m2{ 2.0f, 2.0f, 3.0f, 5.0f };
+	Mat2 m3{ 1.5f, 1.0f, 0.0f, -3.0f };
+
+	m1 *= m2;
+	REQUIRE(m1.e_00 == 0.0f);
+	REQUIRE(m1.e_01 == 0.0f);
+	REQUIRE(m1.e_10 == 0.0f);
+	REQUIRE(m1.e_11 == 0.0f);
+
+	m3 *= m2;
+	REQUIRE(m3.e_00 == 6.0f);
+	REQUIRE(m3.e_01 == 8.0f);
+	REQUIRE(m3.e_10 == -9.0f);
+	REQUIRE(m3.e_11 == -15.0f);
+}
+
+TEST_CASE("testing_Matoperator*", "[Matoperator*]") {
+	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
+	Mat2 m2{ 2.0f, 2.0f, 3.0f, 5.0f };
+	Mat2 m3{ 1.5f, 1.0f, 0.0f, -3.0f };
+
+	m1 *= m2;
+	REQUIRE(m1.e_00 == 0.0f);
+	REQUIRE(m1.e_01 == 0.0f);
+	REQUIRE(m1.e_10 == 0.0f);
+	REQUIRE(m1.e_11 == 0.0f);
+
+	m3 *= m2;
+	REQUIRE(m3.e_00 == 6.0f);
+	REQUIRE(m3.e_01 == 8.0f);
+	REQUIRE(m3.e_10 == -9.0f);
+	REQUIRE(m3.e_11 == -15.0f);
 }
 
 int main(int argc, char *argv[])
