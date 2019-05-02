@@ -1,4 +1,5 @@
 #define CATCH_CONFIG_RUNNER
+#define _USE_MATH_DEFINES
 #include <catch.hpp>
 #include "vec2.hpp"
 #include "mat2.hpp"
@@ -222,6 +223,86 @@ TEST_CASE("testing_Matoperator*", "[Matoperator*]") {
 	REQUIRE(m3.e_01 == 8.0f);
 	REQUIRE(m3.e_10 == -9.0f);
 	REQUIRE(m3.e_11 == -15.0f);
+}
+
+//2.6
+TEST_CASE("testing_Det", "[Det]") {
+	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
+	Mat2 m2{ 1.0f, 2.0f, 3.0f, 4.0f };
+
+	REQUIRE(m1.det() == 0.0f);
+	REQUIRE(m2.det() == -2.0f);
+}
+
+TEST_CASE("testing_MatVecOperator*", "[MatVecOperator*]") {
+	Mat2 m1{ 0.0f, 0.0f, 0.0f, 0.0f };
+	Mat2 m2{ 2.0f, 2.0f, 3.0f, 5.0f };
+	Mat2 m3{ 1.5f, 1.0f, 0.0f, -3.0f };
+	Vec2 v1{ 0.0f, 0.5f };
+	Vec2 v2{ 3.0f, 2.0f };
+	Vec2 v3{ -1.0f, 5.0f };
+
+	v1 * m2;
+	REQUIRE(v1.x == 1.0f);
+	REQUIRE(v1.y == 2.5f);
+
+	m1 * v2;
+	REQUIRE(v2.x == 0.0f);
+	REQUIRE(v2.y == 0.0f);
+
+	m3 * v3;
+	REQUIRE(v3.x == 3.5);
+	REQUIRE(v3.y == -15.0f);
+}
+
+TEST_CASE("testing_Inv", "[Inv]") {
+	Mat2 m1;
+	Mat2 m2{ 5.0f, 3.0f, 4.5f, 2.0f };
+	Mat2 m3{ -1.0f, -4.5f, 5.0f, 0.0f };
+
+	m1 = inverse(m2);
+	REQUIRE(m1.e_00 == Approx(-0.571429f));
+	REQUIRE(m1.e_01 == Approx(0.857143f));
+	REQUIRE(m1.e_10 == Approx(1.28571f));
+	REQUIRE(m1.e_11 == Approx(-1.42857f));
+
+	m1 = inverse(m3);
+	REQUIRE(m1.e_00 == Approx(0.0f));
+	REQUIRE(m1.e_01 == Approx(0.2f));
+	REQUIRE(m1.e_10 == Approx(-0.2222222f));
+	REQUIRE(m1.e_11 == Approx(-0.04444f));
+}
+
+TEST_CASE("testing_Trans", "[Trans]") {
+	Mat2 m1;
+	Mat2 m2{ 2.0f, 3.0f, 1.0f, 4.0f };
+	Mat2 m3{ 7.0f, 2.0f, -6.0f, -1.0f };
+
+	m1 = transpose(m2);
+	REQUIRE(m1.e_01 == 4.0f);
+	REQUIRE(m1.e_11 == 3.0f);
+
+	m1 = transpose(m3);
+	REQUIRE(m1.e_01 == -1.0f);
+	REQUIRE(m1.e_11 == 2.0f);
+}
+
+TEST_CASE("testing_Rotat", "[Rotat]") {
+	float phi1 = 2 * M_PI;
+	float phi2 = M_PI;
+	Mat2 rotation;
+
+	rotation = make_rotation_mat2(phi1);
+	REQUIRE(rotation.e_00 == Approx(-0.28369f));
+	REQUIRE(rotation.e_01 == Approx(-0.958916f));
+	REQUIRE(rotation.e_10 == Approx(0.958916f));
+	REQUIRE(rotation.e_11 == Approx(-0.28369f));
+
+	rotation = make_rotation_mat2(phi2);
+	REQUIRE(rotation.e_00 == Approx(-0.59846f));
+	REQUIRE(rotation.e_01 == Approx(0.801153f));
+	REQUIRE(rotation.e_10 == Approx(-0.801153f));
+	REQUIRE(rotation.e_11 == Approx(-0.59846f));
 }
 
 int main(int argc, char *argv[])
