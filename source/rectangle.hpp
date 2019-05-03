@@ -14,6 +14,7 @@ public:	Vec2 min_;
 		float circumference();
 		void draw(Window const& window, Color const& color_) const;
 		void draw(Window const& window, Color const& color_, float thickness) const;
+		bool is_inside(Vec2 const& mouse_pos);
 };
 
 #endif

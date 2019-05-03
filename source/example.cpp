@@ -1,5 +1,4 @@
 #include "window.hpp"
-#include "vec2.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
 #include <GLFW/glfw3.h>

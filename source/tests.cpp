@@ -321,6 +321,7 @@ TEST_CASE("testing_Color", "[testing_Color]") {
 	REQUIRE(Approx(0.0f) == c2.b);
 }
 
+//2.9
 TEST_CASE("testing_CircleCircumference", "[testing_CircleCircumference]"){
 	Vec2 center1{ 4.5f, 4.5f };
 	Vec2 center2{ 5.5f, 5.5f };
@@ -353,6 +354,28 @@ TEST_CASE("testing_CircleCircumference", "[testing_CircleCircumference]"){
 	u2 = r2.circumference();
 	REQUIRE(u2 == 9.0f);
 }*/
+
+//2.13
+/*TEST_CASE("testing_isInsideRect", "[testing_isInsideRect]") {
+	Vec2 v1{ 3.0f, 5.0f };
+	Vec2 v2{ 7.0f, 7.0f };
+	Rectangle r(v1, v2);
+	Vec2 v3{ 5.0f, 6.0f };
+	Vec2 v4{ 1.0f, 2.0f };
+
+	REQUIRE(r.is_inside(v3) == true);
+	REQUIRE(r.is_inside(v4) == false);
+}*/
+
+TEST_CASE("testing_isInsideCircle", "[testing_isInsideCircle]") {
+	Vec2 center{ 5.0f, 7.0f };
+	Circle c(2.0f, center);
+	Vec2 v1{ 6.0f, 7.0f };
+	Vec2 v2{ 15.0f, 17.0f };
+
+	REQUIRE(c.is_inside(v1) == true);
+	REQUIRE(c.is_inside(v2) == false);
+}
 
 int main(int argc, char *argv[])
 {
