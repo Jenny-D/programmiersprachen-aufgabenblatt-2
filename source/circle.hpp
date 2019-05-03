@@ -13,6 +13,7 @@ public:	float radius_;
 		Circle(float radius_, Vec2 const& center_, Color const& color_);
 		float circumference();
 		void draw(Window const& window, Color const& color_) const;
+		void draw(Window const& window, Color const& color_, float thickness) const;
 };
 
 #endif

@@ -31,3 +31,13 @@ void Circle::draw(Window const& window, Color const& color_) const{
 	}
 }
 
+void Circle::draw(Window const& window, Color const& color_, float thickness) const {
+	for (int i = 0; i < 360; i++)
+	{
+		// Grad zu Bogenmaß
+		float grad1 = i * M_PI / 180.0f;
+		float grad2 = (i + 1) * M_PI / 180.0f;
+
+		window.draw_line(center_.x + (radius_*sin(grad1)), center_.y + (radius_*cos(grad1)), center_.x + (radius_*sin(grad2)), center_.y + (radius_*cos(grad2)), color_.r, color_.g, color_.b, thickness);
+	}
+}
