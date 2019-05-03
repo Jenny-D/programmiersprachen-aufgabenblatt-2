@@ -2,15 +2,6 @@
 #include <iostream>
 #include <cmath>
 
-//2.2
-/*Vec2::Vec2() :
-	x(0.0f),
-	y(0.0f) {}
-
-Vec2::Vec2(float x, float y) :
-	x(x),
-	y(y) {}*/
-
 //2.3
 Vec2& Vec2::operator+=(Vec2 const& v) {
 		x += v.x;

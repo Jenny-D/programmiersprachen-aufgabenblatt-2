@@ -41,8 +41,11 @@ Vec2 operator*(Mat2 const& m, Vec2 const& v) {
 }
 
 Vec2 operator*(Vec2 const& v, Mat2 const& m) {
-	std::cout << "Falsche Reihenfolge! Matrix * Vektor!\n";
-	return m * v;
+	Vec2 v2;
+
+	v2.x = m.e_00 * v.x + m.e_01 * v.y;
+	v2.y = m.e_10 * v.x + m.e_11 * v.y;
+	return v2;
 }
 
 Mat2 inverse(Mat2 const& m) {
