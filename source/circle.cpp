@@ -1,8 +1,10 @@
+#define _USE_MATH_DEFINES
 #include "circle.hpp"
+#include <cmath>
 
 Circle::Circle() :
-	r(0.0f),
-	center(0.0f, 0.0f) {}
+	radius_(0.0f),
+	center_{ 0.0f, 0.0f } {}
 
 Circle::Circle(float radius_, Vec2 const& center_) :
 	radius_(radius_),
