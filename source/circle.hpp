@@ -5,8 +5,9 @@
 class Circle {
 public:	float radius_;
 		Vec2 center_;
-		Circle() const;
+		Circle();
 		Circle(float radius_, Vec2 const& center_);
+		float circumference();
 };
 
 #endif

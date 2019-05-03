@@ -4,6 +4,8 @@
 #include "vec2.hpp"
 #include "mat2.hpp"
 #include "color.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 //2.2
 TEST_CASE("testing_initialization", "[testing_initialization]")
@@ -317,6 +319,39 @@ TEST_CASE("testing_Color", "[testing_Color]") {
 	REQUIRE(Approx(1.0f) == c2.r);
 	REQUIRE(Approx(0.7f) == c2.g);
 	REQUIRE(Approx(0.0f) == c2.b);
+}
+
+TEST_CASE("testing_CircleCircumference", "[testing_CircleCircumference]"){
+	Vec2 center1{ 4.5f, 4.5f };
+	Vec2 center2{ 5.5f, 5.5f };
+	Circle c1(4.0f, center1);
+	Circle c2(5.0f, center2);
+	float u1;
+	float u2;
+
+	u1 = c1.circumference();
+	REQUIRE(u1 == Approx(25.1327f));
+
+	u2 = c2.circumference();
+	REQUIRE(u2 == Approx(31.4159f));
+}
+
+TEST_CASE("testing_RectangleCircumference", "[testing_RectangleCircumference]") {
+	Vec2 v1{ 5.0f, 5.0f };
+	Vec2 v2{ 0.0f, 4.0f };
+	Vec2 v3{ 3.0f, 2.0f };
+	Vec2 v4{ -0.5f, 1.0f };
+	Rectangle r1(v1, v2);
+	Rectangle r2(v3, v4);
+
+	float u1;
+	float u2;
+
+	u1 = r1.circumference();
+	REQUIRE(u1 == 12.0f);
+
+	u2 = r2.circumference();
+	REQUIRE(u2 == 9.0f);
 }
 
 int main(int argc, char *argv[])
