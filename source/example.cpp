@@ -1,4 +1,7 @@
 #include "window.hpp"
+#include "vec2.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
@@ -7,6 +10,20 @@
 int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
+
+  //2.11
+  Vec2 v1{ 100, 100 };
+  Vec2 v2{ 400, 500 };
+  Rectangle r(v1, v2);
+  Color violet{ 0.5f, 0.0f, 0.7f };
+
+  r.draw(win, violet);
+
+  Vec2 center{ 600, 300 };
+  Circle c{ 150.0f, center };
+  Color green{ 0.0f, 0.9f, 0.0f };
+
+  c.draw(win, green);
 
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
