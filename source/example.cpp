@@ -10,38 +10,38 @@ int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
 
-  //2.11
-  Vec2 v1{ 100, 100 };
-  Vec2 v2{ 400, 300 };
-  Rectangle r(v1, v2);
-  Color violet{ 0.5f, 0.0f, 0.7f };
-  
-  r.draw(win, violet);
-
-  Vec2 center{ 600, 300 };
-  Circle c{ 150.0f, center };
-  Color green{ 0.0f, 0.9f, 0.0f };
-
-  c.draw(win, green);
-
-  //2.12
-  Vec2 v3{ 100, 400 };
-  Vec2 v4{ 400, 750 };
-  Rectangle r2(v3, v4);
-  Color blue{ 0.0f, 0.0f, 0.9f };
-
-  r2.draw(win, blue, 2.0f);
-
-  Vec2 center2{ 600, 600 };
-  Circle c2{ 100.0f, center2 };
-  Color red{ 0.9f, 0.0f, 0.0f };
-
-  c2.draw(win, red, 1.5f);
-
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
       win.close();
     }
+
+	//2.11
+	Vec2 v1{ 100, 100 };
+	Vec2 v2{ 400, 300 };
+	Rectangle r(v1, v2);
+	Color violet{ 0.5f, 0.0f, 0.7f };
+
+	r.draw(win, violet);
+
+	Vec2 center{ 600, 300 };
+	Circle c{ 150.0f, center };
+	Color green{ 0.0f, 0.9f, 0.0f };
+
+	c.draw(win, green);
+
+	//2.12
+	Vec2 v3{ 100, 400 };
+	Vec2 v4{ 400, 700 };
+	Rectangle r2(v3, v4);
+	Color blue{ 0.0f, 0.0f, 0.9f };
+
+	r2.draw(win, blue, 2.0f);
+
+	Vec2 center2{ 600, 600 };
+	Circle c2{ 100.0f, center2 };
+	Color red{ 0.9f, 0.0f, 0.0f };
+
+	c2.draw(win, red, 1.5f);
 
     bool left_pressed = win.get_mouse_button(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
 
