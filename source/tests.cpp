@@ -25,6 +25,7 @@ TEST_CASE("testing_Vecoperator+=", "[testing_Vecoperator+=]")
 	Vec2 a{ 0.0f, -2.0f };
 	Vec2 b{ 3.3f, 6.6f };
 	Vec2 c{ 5.7f, 7.3f };
+	Vec2 d{ -2.7f, -1.3f };
 
 	a += b;
 	REQUIRE(a.x == Approx(3.3f));
@@ -34,9 +35,9 @@ TEST_CASE("testing_Vecoperator+=", "[testing_Vecoperator+=]")
 	REQUIRE(b.x == Approx(9.0f));
 	REQUIRE(b.y == Approx(13.9f));
 
-	c += a;
-	REQUIRE(c.x == Approx(5.7f));
-	REQUIRE(c.y == Approx(5.3f));
+	c += d;
+	REQUIRE(c.x == Approx(3.0f));
+	REQUIRE(c.y == Approx(6.0f));
 }
 
 TEST_CASE("testing_Vecoperator-=", "[testing_Vecoperator-=]")
@@ -44,6 +45,7 @@ TEST_CASE("testing_Vecoperator-=", "[testing_Vecoperator-=]")
 	Vec2 a{ 0.0f, -2.0f };
 	Vec2 b{ 3.3f, 6.6f };
 	Vec2 c{ 5.7f, 7.3f };
+	Vec2 d{ -7.7f, 4.0f };
 
 	a -= b;
 	REQUIRE(a.x == Approx(-3.3f));
@@ -53,14 +55,15 @@ TEST_CASE("testing_Vecoperator-=", "[testing_Vecoperator-=]")
 	REQUIRE(b.x == Approx(-2.4f));
 	REQUIRE(b.y == Approx(-0.7f));
 
-	c -= a;
-	REQUIRE(c.x == Approx(5.7f));
-	REQUIRE(c.y == Approx(9.3f));
+	c -= d;
+	REQUIRE(c.x == Approx(13.4f));
+	REQUIRE(c.y == Approx(3.3f));
 }
 
 TEST_CASE("testing_Vecoperator*=", "[testing_Vecoperator*=]")
 {
 	Vec2 a{ 5.0f, 4.0f };
+	Vec2 b{ -1.0f, 2.0f };
 	float s1(3.0f);
 	float s2(0.0f);
 	float s3(-2.0f);
@@ -73,28 +76,30 @@ TEST_CASE("testing_Vecoperator*=", "[testing_Vecoperator*=]")
 	REQUIRE(a.x == Approx(0.0f));
 	REQUIRE(a.y == Approx(0.0f));
 
-	a *= s3;
-	REQUIRE(a.x == Approx(-10.0f));
-	REQUIRE(a.y == Approx(-8.0f));
+	b *= s3;
+	REQUIRE(b.x == Approx(2.0f));
+	REQUIRE(b.y == Approx(-4.0f));
 }
 
 TEST_CASE("testing_Vecoperator/=", "[testing_Vecoperator/=]")
 {
 	Vec2 a{ 4.0f, 7.0f };
+	Vec2 b{ 6.0f, -3.0f };
 	float s1(0.0f);
 	float s2(2.0f);
 	float s3(-2.0f);
 
 	a /= s1;
-	REQUIRE("Die Division durch 0 ist nicht definiert.\n");
+	REQUIRE(a.x == Approx(4.0f));
+	REQUIRE(a.y == Approx(7.0f));
 
 	a /= s2;
 	REQUIRE(a.x == Approx(2.0f));
 	REQUIRE(a.y == Approx(3.5f));
 
-	a /= s3;
-	REQUIRE(a.x == Approx(-2.0f));
-	REQUIRE(a.y == Approx(-3.5f));
+	b /= s3;
+	REQUIRE(b.x == Approx(-3.0f));
+	REQUIRE(b.y == Approx(1.5f));
 }
 
 //2.4
@@ -105,15 +110,15 @@ TEST_CASE("testing_Vecoperator+", "[testing_Vecoperator+]")
 	Vec2 v{ 3.3f, 6.6f };
 	Vec2 w{ 5.7f, 7.3f };
 
-	u + v;
+	a = u + v;
 	REQUIRE(a.x == Approx(3.3f));
 	REQUIRE(a.y == Approx(4.6f));
 
-	v + w;
+	a = v + w;
 	REQUIRE(a.x == Approx(9.0f));
 	REQUIRE(a.y == Approx(13.9f));
 
-	w + u;
+	a = w + u;
 	REQUIRE(a.x == Approx(5.7f));
 	REQUIRE(a.y == Approx(5.3f));
 }
@@ -125,15 +130,15 @@ TEST_CASE("testing_Vecoperator-", "[testing_Vecoperator-]")
 	Vec2 v{ 3.3f, 6.6f };
 	Vec2 w{ 5.7f, 7.3f };
 
-	u - v;
+	a = u - v;
 	REQUIRE(a.x == Approx(-3.3f));
 	REQUIRE(a.y == Approx(-8.6f));
 
-	v - w;
+	a = v - w;
 	REQUIRE(a.x == Approx(-2.4f));
 	REQUIRE(a.y == Approx(-0.7f));
 
-	w - u;
+	a = w - u;
 	REQUIRE(a.x == Approx(5.7f));
 	REQUIRE(a.y == Approx(9.3f));
 }
@@ -146,27 +151,27 @@ TEST_CASE("testing_Vecoperator*", "[testing_Vecoperator*]")
 	float s2(0.0f);
 	float s3(-2.0f);
 
-	v * s1;
+	a = v * s1;
 	REQUIRE(a.x == Approx(15.0f));
 	REQUIRE(a.y == Approx(12.0f));
 
-	v * s2;
+	a = v * s2;
 	REQUIRE(a.x == Approx(0.0f));
 	REQUIRE(a.y == Approx(0.0f));
 
-	v * s3;
+	a = v * s3;
 	REQUIRE(a.x == Approx(-10.0f));
 	REQUIRE(a.y == Approx(-8.0f));
 
-	s1 * v;
+	a = s1 * v;
 	REQUIRE(a.x == Approx(15.0f));
 	REQUIRE(a.y == Approx(12.0f));
 
-	s2 * v;
+	a = s2 * v;
 	REQUIRE(a.x == Approx(0.0f));
 	REQUIRE(a.y == Approx(0.0f));
 
-	s3 * v;
+	a = s3 * v;
 	REQUIRE(a.x == Approx(-10.0f));
 	REQUIRE(a.y == Approx(-8.0f));
 }
@@ -179,14 +184,15 @@ TEST_CASE("testing_Vecoperator/", "[testing_Vecoperator/]")
 	float s2(2.0f);
 	float s3(-2.0f);
 
-	v / s1;
-	REQUIRE("Die Division durch 0 ist nicht definiert.\n");
+	a = v / s1;
+	REQUIRE(a.x == Approx(4.0f));
+	REQUIRE(a.y == Approx(7.0f));
 
-	v / s2;
+	a = v / s2;
 	REQUIRE(a.x == Approx(2.0f));
 	REQUIRE(a.y == Approx(3.5f));
 
-	v / s3;
+	a = v / s3;
 	REQUIRE(a.x == Approx(-2.0f));
 	REQUIRE(a.y == Approx(-3.5f));
 }
@@ -244,18 +250,19 @@ TEST_CASE("testing_MatVecOperator*", "[testing_MatVecOperator*]") {
 	Vec2 v1{ 0.0f, 0.5f };
 	Vec2 v2{ 3.0f, 2.0f };
 	Vec2 v3{ -1.0f, 5.0f };
+	Vec2 a;
 
-	v1 * m2;
-	REQUIRE(v1.x == 1.0f);
-	REQUIRE(v1.y == 2.5f);
+	a = v1 * m2;
+	REQUIRE(a.x == 1.0f);
+	REQUIRE(a.y == 2.5f);
 
-	m1 * v2;
-	REQUIRE(v2.x == 0.0f);
-	REQUIRE(v2.y == 0.0f);
+	a = m1 * v2;
+	REQUIRE(a.x == 0.0f);
+	REQUIRE(a.y == 0.0f);
 
-	m3 * v3;
-	REQUIRE(v3.x == 3.5);
-	REQUIRE(v3.y == -15.0f);
+	a = m3 * v3;
+	REQUIRE(a.x == 3.5);
+	REQUIRE(a.y == -15.0f);
 }
 
 TEST_CASE("testing_Inv", "[testing_Inv]") {

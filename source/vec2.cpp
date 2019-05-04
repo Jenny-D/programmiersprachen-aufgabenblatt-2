@@ -23,7 +23,7 @@ Vec2& Vec2::operator*=(float s) {
 
 Vec2& Vec2::operator/=(float s) {
 	if (s == 0.0f) {
-		std::cout << "Die Divison durch 0 ist nicht definiert!\n";
+		std::cout << "Die Division durch 0 ist nicht definiert!\n";
 		return *this;
 	}
 	else {
@@ -43,27 +43,33 @@ Vec2 operator+(Vec2 const& u, Vec2 const& v) {
 
 Vec2 operator-(Vec2 const& u, Vec2 const& v) {
 	Vec2 a;
-	a.x -= u.x - v.x;
-	a.y -= u.y - v.y;
+	a.x += u.x - v.x;
+	a.y += u.y - v.y;
 	return a;
 }
 
 Vec2 operator*(Vec2 const& v, float s) {
-	Vec2 a;
+	Vec2 a{ 1.0f, 1.0f };
 	a.x *= v.x * s;
 	a.y *= v.y * s;
 	return a;
 }
 
 Vec2 operator/(Vec2 const& v, float s) {
-	Vec2 a;
-	a.x /= v.x / s;
-	a.y /= v.y / s;
-	return a;
+	if (s == 0) {
+		std::cout << "Die Division durch 0 ist nicht definiert!\n";
+		return v;
+	}
+	else {
+		Vec2 a;
+		a.x += v.x / s;
+		a.y += v.y / s;
+		return a;
+	}
 }
 
 Vec2 operator*(float s, Vec2 const& v) {
-	Vec2 a;
+	Vec2 a{ 1.0f, 1.0f };
 	a.x *= s * v.x;
 	a.y *= s * v.y;
 	return a;
