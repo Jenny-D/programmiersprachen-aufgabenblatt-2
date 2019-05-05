@@ -15,7 +15,7 @@ Rectangle::Rectangle(Vec2 const& min_, Vec2 const& max_, Color const& color_) :
 	color_(color_) {}
 
 //2.9
-float Rectangle::circumference() {
+float Rectangle::circumference() const {
 	float umfang = 2 * (max_.x - min_.x) + 2 * (max_.y - min_.y);
 	return umfang;
 }

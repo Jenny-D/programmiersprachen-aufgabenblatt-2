@@ -11,7 +11,7 @@ public:	Vec2 min_;
 		Rectangle();
 		Rectangle(Vec2 const& min_, Vec2 const& max_);
 		Rectangle(Vec2 const& min_, Vec2 const& max_, Color const& color_);
-		float circumference();
+		float circumference() const;
 		void draw(Window const& window, Color const& color_) const;
 		void draw(Window const& window, Color const& color_, float thickness) const;
 		bool is_inside(Vec2 const& mouse_pos);
