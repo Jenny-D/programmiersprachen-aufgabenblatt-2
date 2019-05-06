@@ -17,7 +17,7 @@ Circle::Circle(float radius_, Vec2 const& center_, Color const& color_) :
 	color_(color_) {}
 
 //2.9
-float Circle::circumference() {
+float Circle::circumference() const{
 	return radius_ * M_PI * 2;
 }
 
@@ -44,7 +44,7 @@ void Circle::draw(Window const& window, Color const& color_, float thickness) co
 }
 
 //2.13
-bool Circle::is_inside(Vec2 const& mouse_pos) {
+bool Circle::is_inside(Vec2 const& mouse_pos) const {
 	bool inside = false;
 	// wenn mouse_pos weiter entfernt ist vom center als der Radius, ist sie auﬂerhalb
 	float abstand = sqrt(pow((mouse_pos.x - center_.x), 2) + pow((mouse_pos.y - center_.y), 2));

@@ -37,7 +37,7 @@ void Rectangle::draw(Window const& window, Color const& color_, float thickness)
 }
 
 //2.13
-bool Rectangle::is_inside(Vec2 const& mouse_pos) {
+bool Rectangle::is_inside(Vec2 const& mouse_pos) const{
 	bool inside = false;
 	// wenn mouse_pos < min_ oder > max_, dann ist es nicht im Rechteck
 	// -> testen, ob mouse_pos >= min_ und <= max_
